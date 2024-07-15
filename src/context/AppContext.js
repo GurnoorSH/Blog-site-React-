@@ -17,6 +17,7 @@ export default function AppContextProvider({ children }) {
       setpage(data.page);
       setposts(data.posts);
       setTotalpages(data.totalPages);
+      
     } catch (error) {
       console.log("Fetch error");
       setpage(1);
@@ -24,7 +25,6 @@ export default function AppContextProvider({ children }) {
       setTotalpages(null);
     }
     setloading(false);
-    console.log(posts)
   }
   function handlePageChange(page) {
     setpage(page);
