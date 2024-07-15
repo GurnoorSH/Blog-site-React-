@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { useState,createContext } from "react";
 import { baseUrl } from "../BaseUrl";
 export const AppContext = createContext();
 
-function AppContextProvider({ children }) {
+export default function AppContextProvider({ children }) {
   const [loading, setloading] = useState(false);
   const [posts, setposts] = useState([]);
   const [page, setpage] = useState(1);
@@ -14,7 +14,6 @@ function AppContextProvider({ children }) {
     try {
       const result = await fetch(url);
       const data = await result.json();
-      console.log(data);
       setpage(data.page);
       setposts(data.posts);
       setTotalpages(data.totalPages);
@@ -25,6 +24,7 @@ function AppContextProvider({ children }) {
       setTotalpages(null);
     }
     setloading(false);
+    console.log(posts)
   }
   function handlePageChange(page) {
     setpage(page);
